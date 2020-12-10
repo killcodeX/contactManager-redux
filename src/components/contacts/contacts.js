@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import Avatar from 'react-avatar';
 
 export default function Contacts() {
   const contacts = useSelector((state) => state.contacts);
@@ -23,7 +24,7 @@ export default function Contacts() {
           return (
             <tr key={i}>
               <th scope="row">{contact.id}</th>
-              <td>{contact.name}</td>
+              <td><Avatar className='mr-3' name={contact.name} size='45' round={true}/>{contact.name}</td>
               <td>{contact.email}</td>
               <td>{contact.phone}</td>
             </tr>
