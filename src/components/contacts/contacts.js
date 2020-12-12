@@ -5,7 +5,7 @@ import Avatar from 'react-avatar';
 export default function Contacts() {
   const contacts = useSelector((state) => state.contacts);
   return (
-    <table class="table shadow">
+    <table className="table shadow">
       <thead className="bg-danger text-white">
         <tr>
           <th scope="col">

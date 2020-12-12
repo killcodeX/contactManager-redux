@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
-import store from "./store";
+import store from "./redux/store";
 import Navbar from "./components/navbar";
 import Contacts from "./components/contacts/contacts";
 import AddContacts from './components/contacts/addContact';

@@ -1,14 +1,25 @@
 import React, { useState } from "react";
+import {useDispatch} from 'react-redux';
+import {addContact} from '../../redux/actions/actions';
 
 export default function AddContact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState(0);
 
+  const dispatch = useDispatch()
+
 
   const handleSubmit = (e) => {
       e.preventDefault();
-        console.log(name, phone, email)
+      let newContact = {
+        id: Math.floor(Math.random() * 100) + 1,
+        name: name,
+        phone: phone,
+        email:email,
+      }
+
+      dispatch(addContact(newContact))
   }
 
 
