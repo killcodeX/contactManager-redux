@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import Avatar from 'react-avatar';
 
 export default function Contacts() {
-  const contacts = useSelector((state) => state.contacts);
+  const contacts = useSelector((state) => state.contacts.contacts);
   return (
     <table className="table shadow">
       <thead className="bg-danger text-white">
