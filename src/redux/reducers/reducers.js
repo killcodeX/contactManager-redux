@@ -1,10 +1,19 @@
 // global state
 import data from "../data";
-import { Add, GET, UPDATE, DELETE } from "../actions/actionContants";
+import {
+  Add,
+  GET,
+  UPDATE,
+  DELETE,
+  SELECT,
+  CLEAR,
+  DELETEALL
+} from "../actions/actionContants";
 
 const initialState = {
   contacts: data,
   contact: null,
+  selectedContacts: []
 };
 
 // Reducers
@@ -37,10 +46,27 @@ const contactReducer = (state = initialState, action) => {
         ),
       };
 
-    case DELETE:
+      case DELETE:
       return {
         ...state,
-        contacts: state.contacts.filter(contact => contact.id != action.payload)
+        contacts: state.contacts.filter((contact) => contact.id !== action.payload),
+      };
+
+    case SELECT:
+      return {
+        ...state,
+        selectedContacts: action.payload
+      };
+
+    case CLEAR:
+      return {
+        ...state,
+        selectedContacts: []
+      };
+      case DELETEALL:
+      return {
+        ...state,
+        contacts: []
       };
     default:
       return state;
