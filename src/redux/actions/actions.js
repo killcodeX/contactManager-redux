@@ -1,4 +1,4 @@
-import {Add, GET, UPDATE} from './actionContants';
+import {Add, GET, UPDATE, DELETE} from './actionContants';
 // actions
 
 export const addContact = (contact) => {
@@ -17,6 +17,11 @@ export const addContact = (contact) => {
   export const updateContact = (contact) => ({
     type: UPDATE,
     payload : contact
+  })
+  
+  export const deleteContact = (id) => ({
+    type: DELETE,
+    payload : id
   })
   
   

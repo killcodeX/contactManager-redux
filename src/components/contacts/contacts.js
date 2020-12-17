@@ -2,9 +2,12 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Avatar from 'react-avatar';
 import {Link} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+import {deleteContact} from '../../redux/actions/actions';
 
 export default function Contacts() {
   const contacts = useSelector((state) => state.contacts.contacts);
+  const dispatch = useDispatch();
   return (
     <table className="table shadow">
       <thead className="bg-danger text-white">
@@ -34,7 +37,7 @@ export default function Contacts() {
                   <span className='material-icons'>edits</span>
                 </Link>
                 <Link to='#'>
-                  <span className='material-icons'>remove_circle</span>
+                  <span className='material-icons' onClick={() => dispatch(deleteContact(contact.id))}>remove_circle</span>
                 </Link>
               </td>
             </tr>
