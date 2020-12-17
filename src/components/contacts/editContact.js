@@ -1,28 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {useDispatch} from 'react-redux';
+import { getContact, updateContact} from '../../redux/actions/actions';
+import {useParams} from 'react-router-dom';
+import {useSelector} from 'react-redux';
 import { useHistory } from "react-router-dom";
-import {addContact} from '../../redux/actions/actions';
 
-export default function AddContact() {
+export default function EditContact() {
+
+  let {id} = useParams();
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const contact = useSelector((state) => state.contacts.contact)
+
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState('');
 
-  const dispatch = useDispatch();
-  const history = useHistory();
+ 
+
+  useEffect(() => {
+    if(contact != null){
+      setName(contact.name)
+      setPhone(contact.phone)
+      setEmail(contact.email)
+    }
+    dispatch(getContact(id))
+  }, [contact])
 
 
   const handleSubmit = (e) => {
       e.preventDefault();
-      let newContact = {
-        id: Math.floor(Math.random() * 100) + 1,
-        name: name,
-        phone: phone,
-        email:email,
-      }
-
-      dispatch(addContact(newContact))
-      alert('New Contact Added !!')
+      const updateCont = Object.assign(contact, { 
+        name : name,
+        email: email,
+        phone : phone
+      })
+      dispatch(updateContact(updateCont))
       history.push('/')
   }
 
@@ -30,7 +45,7 @@ export default function AddContact() {
   return (
     <section>
       <div className="card border-0 shadow">
-        <div className="card-header">Add new Contact</div>
+        <div className="card-header">Edit Contact</div>
         <div className="card-body">
           <form onSubmit={handleSubmit}>
             <div className="form-group">
@@ -60,8 +75,8 @@ export default function AddContact() {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <button type="submit" className="btn btn-primary">
-              Add Contact
+            <button type="submit" className="btn btn-warning">
+              Update Contact
             </button>
           </form>
         </div>

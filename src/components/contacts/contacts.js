@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import Avatar from 'react-avatar';
+import {Link} from 'react-router-dom';
 
 export default function Contacts() {
   const contacts = useSelector((state) => state.contacts.contacts);
@@ -29,12 +30,12 @@ export default function Contacts() {
               <td>{contact.email}</td>
               <td>{contact.phone}</td>
               <td className='actions'>
-                <a href='#'>
+                <Link to={`/edit-contact/${contact.id}`}>
                   <span className='material-icons'>edits</span>
-                </a>
-                <a href='#'>
+                </Link>
+                <Link to='#'>
                   <span className='material-icons'>remove_circle</span>
-                </a>
+                </Link>
               </td>
             </tr>
           );
